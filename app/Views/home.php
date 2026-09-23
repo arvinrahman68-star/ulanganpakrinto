@@ -22,7 +22,7 @@
                 <?php if ($m['image'] && file_exists('uploads/'.$m['image'])): ?>
                     <img src="/uploads/<?= $m['image'] ?>" class="w-full h-full object-cover">
                 <?php else: ?>
-                    <div class="flex items-center justify-center h-full text-gray-400 bg-gray-100"><span class="text-xl">Kerak Telor</span></div>
+                    <img src="/uploads/kerak_telor.jpg" class="w-full h-full object-cover" alt="Kerak Telor Image">
                 <?php endif; ?>
                 <div class="absolute top-0 right-0 bg-secondary text-primary font-bold px-3 py-1 m-2 rounded-lg shadow">
                     Rp <?= number_format($m['price'], 0, ',', '.') ?>
@@ -31,7 +31,7 @@
             <div class="p-6 flex flex-col flex-grow">
                 <h3 class="text-xl font-bold text-primary mb-2"><?= esc($m['name']) ?></h3>
                 <p class="text-gray-600 text-sm flex-grow"><?= esc($m['description']) ?></p>
-                <button class="mt-4 w-full bg-primary text-white py-2 rounded-lg hover:bg-red-800 transition shadow">Pesan Sekarang</button>
+                <a href="/detail/<?= $m['id'] ?>" class="mt-4 block text-center w-full bg-primary text-white py-2 rounded-lg hover:bg-red-800 transition shadow">Lihat Detail & Pesan</a>
             </div>
         </div>
         <?php endforeach; ?>

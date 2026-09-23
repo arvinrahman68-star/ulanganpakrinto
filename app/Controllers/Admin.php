@@ -66,6 +66,14 @@ class Admin extends BaseController
     public function store()
     {
         if (!session()->get('isLoggedIn')) return redirect()->to('/admin/login');
+
+        if (!$this->validate([
+            'name' => 'required|min_length[3]',
+            'price' => 'required|numeric|greater_than[0]',
+        ])) {
+            return redirect()->back()->withInput()->with('error', 'Validasi gagal. Pastikan nama dan harga diisi dengan benar.');
+        }
+
         $model = new MenuModel();
         $model->save([
             'name' => $this->request->getVar('name'),
@@ -88,6 +96,14 @@ class Admin extends BaseController
     public function update($id = null)
     {
         if (!session()->get('isLoggedIn')) return redirect()->to('/admin/login');
+
+        if (!$this->validate([
+            'name' => 'required|min_length[3]',
+            'price' => 'required|numeric|greater_than[0]',
+        ])) {
+            return redirect()->back()->withInput()->with('error', 'Validasi gagal. Pastikan nama dan harga diisi dengan benar.');
+        }
+
         $model = new MenuModel();
         $model->update($id, [
             'name' => $this->request->getVar('name'),
